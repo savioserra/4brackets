@@ -1,0 +1,41 @@
+name: graphql_mobx
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.2.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  hive: ^1.3.0
+  hive_flutter: ^0.3.0+1
+  cupertino_icons: ^0.1.2
+  path_provider: ^1.5.1
+  get_it: ^3.1.0
+  uuid: ^2.0.4
+
+dev_dependencies:
+  hive_generator: ^0.7.0
+  build_runner: ^1.7.3
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Awesome
+      fonts:
+        - asset: assets/fonts/font_awesome_light.ttf
+
+    - family: Biko
+      fonts:
+        - asset: assets/fonts/biko_light-restricted.otf
+          weight: 300
+        - asset: assets/fonts/biko_regular.otf
+          weight: 400
+        - asset: assets/fonts/biko_bold.otf
+          weight: 700
+        - asset: assets/fonts/biko_black.otf
+          weight: 800
