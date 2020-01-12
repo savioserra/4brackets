@@ -12,13 +12,8 @@ class Repository<T extends Id> {
 
   Box<T> get box => Hive.box<T>(boxName);
 
-  Future<bool> _commit(AsyncCallback callback) async {
-    try {
-      await callback();
-      return true;
-    } catch (e) {
-      return false;
-    }
+  Future<bool> _commit(AsyncCallback callback) {
+    return callback().then((r) => true).catchError(() => false);
   }
 
   Future<bool> create(T value) async {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:graphql_mobx/core/models/event.dart';
 import 'package:graphql_mobx/ui/pages/event_details/event_details.page.dart';
 import 'package:graphql_mobx/ui/styles/icons.dart';
+import 'package:graphql_mobx/ui/styles/palette.dart';
 import 'package:graphql_mobx/ui/widgets/icon_button.dart' as CustomIconButton;
 
 class EventCard extends StatelessWidget {
@@ -36,7 +37,7 @@ class EventCard extends StatelessWidget {
 
   Widget buildCard() {
     return ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(6.0)),
+      borderRadius: const BorderRadius.all(Radius.circular(8.0)),
       child: Container(
         decoration: BoxDecoration(color: Colors.grey[300]),
         child: Column(
@@ -56,10 +57,10 @@ class EventCard extends StatelessWidget {
 
   Widget buildHeader() {
     return Container(
-      padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+      padding: const EdgeInsets.all(8.0),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFFFFB543), Colors.white],
+          colors: [Colors.white, Palette.orange],
         ),
       ),
       child: Row(
@@ -87,7 +88,7 @@ class EventCard extends StatelessWidget {
 
   Widget buildFooter() {
     return Container(
-      padding: const EdgeInsets.fromLTRB(0.0, 12.0, 12.0, 6.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 8.0, 8.0, 8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -109,11 +110,10 @@ class EventCard extends StatelessWidget {
 
   Widget buildBody() {
     return Container(
-      height: 80.0,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(6.0),
+          bottom: Radius.circular(8.0),
         ),
       ),
       padding: const EdgeInsets.symmetric(
@@ -138,25 +138,28 @@ class EventCard extends StatelessWidget {
               Text(event.totalPlayers.toString())
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    width: 50,
-                    child: Text(
-                      "Phase:",
-                      style: TextStyle(
-                        color: Colors.grey[700],
-                        fontSize: 13.0,
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      width: 50,
+                      child: Text(
+                        "Phase:",
+                        style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 13.0,
+                        ),
                       ),
                     ),
-                  ),
-                  Text("${event.currentPhase}/${event.totalPhases}")
-                ],
-              ),
-            ],
+                    Text("${event.currentPhase}/${event.totalPhases}")
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

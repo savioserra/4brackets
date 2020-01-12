@@ -15,6 +15,9 @@ class Event extends HiveObject implements Id {
   @HiveField(1)
   final String name;
 
+  @HiveField(6)
+  final String description;
+
   @HiveField(2)
   final DateTime nextEncounter;
 
@@ -42,6 +45,7 @@ class Event extends HiveObject implements Id {
     this.name,
     this.players,
     this.phases,
+    this.description,
     this.currentPhase = 1,
   });
 }

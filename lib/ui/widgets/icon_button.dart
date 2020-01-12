@@ -20,7 +20,7 @@ class IconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Palette.orange,
+      color: color,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(size)),
       ),
@@ -33,7 +33,7 @@ class IconButton extends StatelessWidget {
           alignment: Alignment.center,
           height: size,
           width: size,
-          decoration: const BoxDecoration(shape: BoxShape.circle),
+          decoration: BoxDecoration(shape: BoxShape.circle),
           child: icon,
         ),
       ),

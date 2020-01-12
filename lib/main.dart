@@ -7,13 +7,14 @@ Future<void> main() async {
   await hiveBootstrap();
   Injection.bootstrap();
 
-  runApp(MyApp());
+  runApp(BracketsApp());
 }
 
-class MyApp extends StatelessWidget {
+class BracketsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
