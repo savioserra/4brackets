@@ -1,16 +1,18 @@
-import 'package:uuid/uuid.dart';
-import 'package:graphql_mobx/core/models/player.dart';
+import 'id.dart';
+import 'phase.dart';
+import 'player.dart';
+
 import 'package:hive/hive.dart';
 import 'dart:math' as math;
 
 part 'event.g.dart';
 
-@HiveType(typeId: 1)
-class Event extends HiveObject {
-  @HiveField(1)
-  final String id;
-
+@HiveType(typeId: 0)
+class Event extends HiveObject implements Id {
   @HiveField(0)
+  String id;
+
+  @HiveField(1)
   final String name;
 
   @HiveField(2)
@@ -22,8 +24,10 @@ class Event extends HiveObject {
   @HiveField(4)
   final HiveList<Player> players;
 
+  @HiveField(5)
+  final HiveList<Phase> phases;
+
   int get totalPlayers {
-    print(players?.length ?? 0);
     return players?.length ?? 0;
   }
 
@@ -33,9 +37,11 @@ class Event extends HiveObject {
   }
 
   Event({
+    this.id,
     this.nextEncounter,
     this.name,
     this.players,
+    this.phases,
     this.currentPhase = 1,
-  }) : id = Uuid().v4();
+  });
 }

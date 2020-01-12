@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:graphql_mobx/core/models/event.dart';
 import 'package:graphql_mobx/core/models/player.dart';
+import 'package:graphql_mobx/core/repositories/repository.dart';
 import 'package:graphql_mobx/injection.dart';
 import 'package:graphql_mobx/ui/widgets/icon_button.dart' as CustomButtons;
 import 'package:graphql_mobx/ui/styles/palette.dart';
 import 'package:graphql_mobx/ui/widgets/brackets_app_bar.dart';
 import 'package:graphql_mobx/ui/widgets/event_card.dart';
 import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 class EventListPage extends StatelessWidget {
-  final Box<Event> eventsBox;
-  final Box<Player> playersBox;
+  final Repository<Event> eventsBox;
+  final Repository<Player> playersBox;
 
   EventListPage({Key key})
-      : eventsBox = Injection.get<Box<Event>>(),
-        playersBox = Injection.get<Box<Player>>(),
+      : eventsBox = Injection.get<Repository<Event>>(),
+        playersBox = Injection.get<Repository<Player>>(),
         super(key: key);
 
   @override
@@ -31,14 +31,18 @@ class EventListPage extends StatelessWidget {
           size: 30.0,
           icon: Icon(Icons.add, size: 15.0),
           onTap: () {
-            var e = Event(nextEncounter: DateTime.now(), name: "Test");
-            eventsBox.put(e.id, e);
+            eventsBox.create(
+              Event(
+                nextEncounter: DateTime.now(),
+                name: "Test",
+              ),
+            );
           },
         ),
         backgroundColor: Palette.black,
         appBar: BracketsAppBar(title: "Eventos"),
         body: ValueListenableBuilder<Box<Event>>(
-          valueListenable: eventsBox.listenable(),
+          valueListenable: eventsBox.watch(),
           builder: (ctx, box, child) {
             return Container(
               alignment: Alignment.center,
