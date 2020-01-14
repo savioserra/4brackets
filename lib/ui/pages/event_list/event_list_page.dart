@@ -32,18 +32,38 @@ class EventListPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             physics: const BouncingScrollPhysics(),
             itemCount: box.length,
-            itemBuilder: (ctx, idx) => Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: EventCard(event: box.getAt(idx)),
-            ),
+            itemBuilder: (ctx, idx) {
+              var event = box.getAt(idx);
+
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Stack(
+                  overflow: Overflow.clip,
+                  children: [
+                    Positioned.fill(
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                        child: Container(color: Colors.red),
+                      ),
+                    ),
+                    Dismissible(
+                      key: Key(event.id),
+                      child: EventCard(event: event),
+                      onDismissed: (direction) => eventsBox.delete(event.id),
+                    ),
+                  ],
+                ),
+              );
+            },
           );
         },
       ),
       floatingActionButton: CustomButtons.IconButton(
-        size: 30.0,
+        size: 40.0,
         icon: Icon(Icons.add, size: 15.0, color: Colors.white),
         onTap: () => Navigator.of(context).push(CupertinoPageRoute(builder: (ctx) => CreateEventPage())),
         color: Palette.purple,
+        highlightColor: Palette.orange,
       ),
     );
   }

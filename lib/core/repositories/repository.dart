@@ -37,6 +37,10 @@ class Repository<T extends Id> {
     return box.get(key);
   }
 
+  Future<bool> delete(String key) {
+    return _commit(() => box.delete(key));
+  }
+
   ValueListenable<Box<T>> watch({List<String> keys}) {
     return box.listenable(keys: keys);
   }

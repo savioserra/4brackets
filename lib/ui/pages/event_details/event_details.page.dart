@@ -28,7 +28,7 @@ class EventDetailsPage extends StatelessWidget {
           backgroundColor: Palette.black,
           body: Center(
             child: Text(
-              snapshot.get(eventId).id,
+              snapshot.get(eventId).description,
               style: TextStyle(color: Colors.white),
             ),
           ),

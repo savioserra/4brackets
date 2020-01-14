@@ -1,4 +1,4 @@
-package savioserra.dev.graphql_mobx
+package savioserra.dev.brackets
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

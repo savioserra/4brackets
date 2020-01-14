@@ -112,17 +112,25 @@ class EventCard extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(8.0),
-        ),
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(8.0)),
       ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 8.0,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          if (event.description != null && event.description.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 24.0),
+              child: Container(
+                width: double.infinity,
+                child: Text(
+                  event.description,
+                  style: const TextStyle(color: Colors.grey),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 3,
+                ),
+              ),
+            ),
           Row(
             children: [
               Container(
@@ -138,28 +146,26 @@ class EventCard extends StatelessWidget {
               Text(event.totalPlayers.toString())
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      width: 50,
-                      child: Text(
-                        "Phase:",
-                        style: TextStyle(
-                          color: Colors.grey[700],
-                          fontSize: 13.0,
-                        ),
+          SizedBox(height: 8.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: 50,
+                    child: Text(
+                      "Phase:",
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                        fontSize: 13.0,
                       ),
                     ),
-                    Text("${event.currentPhase}/${event.totalPhases}")
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                  Text("${event.currentPhase}/${event.totalPhases}")
+                ],
+              ),
+            ],
           ),
         ],
       ),
