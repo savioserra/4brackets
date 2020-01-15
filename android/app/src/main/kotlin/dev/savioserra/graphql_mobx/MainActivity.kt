@@ -1,4 +1,4 @@
-package savioserra.dev.brackets
+package dev.savioserra.brackets
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

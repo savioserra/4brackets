@@ -12,33 +12,25 @@ class Repository<T extends Id> {
 
   Box<T> get box => Hive.box<T>(boxName);
 
-  Future<bool> _commit(AsyncCallback callback) {
-    return callback().then((r) => true).catchError(() => false);
+  Future<void> create(T value) async {
+    value.id = Uuid().v4();
+    return box.put(value.id, value);
   }
 
-  Future<bool> create(T value) async {
-    return _commit(() async {
-      value.id = Uuid().v4();
-      await box.put(value.id, value);
-    });
-  }
+  Future<void> update(T value) async {
+    if (value.id == null) {
+      throw 'Id field is empty. Did you forget to call .create()?';
+    }
 
-  Future<bool> update(T value) async {
-    return _commit(() async {
-      if (value.id == null) {
-        throw 'Id field is empty. Did you forget to call .create()?';
-      }
-
-      await box.put(value.id, value);
-    });
+    return box.put(value.id, value);
   }
 
   T find(String key) {
     return box.get(key);
   }
 
-  Future<bool> delete(String key) {
-    return _commit(() => box.delete(key));
+  Future<void> delete(String key) {
+    return box.delete(key);
   }
 
   ValueListenable<Box<T>> watch({List<String> keys}) {

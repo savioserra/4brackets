@@ -3,11 +3,15 @@ import 'package:graphql_mobx/ui/styles/palette.dart';
 
 class Input extends StatelessWidget {
   final String placeholderText;
-  final TextEditingController controller;
   final bool multiline;
+  final Function(String) onChanged;
 
-  const Input({Key key, @required this.placeholderText, this.controller, this.multiline = false})
-      : super(key: key);
+  const Input({
+    Key key,
+    @required this.placeholderText,
+    @required this.onChanged,
+    this.multiline = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class Input extends StatelessWidget {
       ),
       child: TextField(
         scrollPhysics: const BouncingScrollPhysics(),
-        controller: controller,
+        onChanged: onChanged,
         cursorColor: Palette.orange,
         minLines: multiline ? 4 : 1,
         maxLines: multiline ? 6 : 1,

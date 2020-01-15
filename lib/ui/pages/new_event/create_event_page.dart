@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:graphql_mobx/core/models/event.dart';
-import 'package:graphql_mobx/core/repositories/repository.dart';
-import 'package:graphql_mobx/injection.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:graphql_mobx/ui/pages/new_event/create_event_controller.dart';
+import 'package:graphql_mobx/ui/styles/palette.dart';
 import 'package:graphql_mobx/ui/widgets/brackets_app_bar.dart';
 import 'input.dart';
 import 'label.dart';
@@ -14,38 +14,29 @@ class CreateEventPage extends StatefulWidget {
 }
 
 class _CreateEventPageState extends State<CreateEventPage> {
-  final playersController = NumberInputController(incrementRate: 2, minValue: 2);
-  final nameController = TextEditingController();
-  final descriptionController = TextEditingController();
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  final controller = CreateEventPageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[900],
       appBar: BracketsAppBar(
         title: "Create Event",
-        rightAction: GestureDetector(
-          onTap: () {
-            Injection.get<Repository<Event>>().create(
-              Event(
-                name: nameController.value.text,
-                description: descriptionController.value.text,
+        rightAction: Observer(
+          builder: (ctx) => GestureDetector(
+            onTap: controller.isValid ? controller.toNextStep : null,
+            child: TweenAnimationBuilder<Color>(
+              duration: const Duration(milliseconds: 200),
+              tween: ColorTween(
+                  begin: Palette.purple, end: controller.isValid ? Palette.blue : Colors.grey[300]),
+              builder: (ctx, color, child) => Text(
+                "Next",
+                style: TextStyle(fontSize: 16, color: color),
               ),
-            );
-
-            Navigator.of(context).pop();
-          },
-          child: Text(
-            "Next",
-            style: const TextStyle(fontSize: 16),
+            ),
           ),
         ),
       ),
-      backgroundColor: Colors.grey[900],
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 16.0),
@@ -60,18 +51,33 @@ class _CreateEventPageState extends State<CreateEventPage> {
   }
 
   Widget buildGeneralInfoSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Label(title: "Name"),
-        Input(placeholderText: "Eg. An Awesome Event", controller: nameController),
-        separator(),
-        Label(title: "Description"),
-        Input(placeholderText: "Eg. Welcome...", multiline: true, controller: descriptionController),
-        separator(),
-        Label(title: "Number of Players"),
-        NumberInput(controller: playersController),
-      ],
+    return Observer(
+      builder: (ctx) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Label(title: "Name"),
+          Input(
+            placeholderText: "Eg. An Awesome Event",
+            onChanged: (v) => controller.eventName = v,
+          ),
+          separator(),
+          Label(title: "Description"),
+          Input(
+            placeholderText: "Eg. Welcome...",
+            multiline: true,
+            onChanged: (v) => controller.eventDescription = v,
+          ),
+          separator(),
+          Label(title: "Number of Players"),
+          NumberInput(
+            value: controller.eventNumberOfPlayers,
+            minValue: 2,
+            maxValue: 64,
+            onIncrement: controller.incrementNumberOfPlayers,
+            onDecrement: controller.decrementNumberOfPlayers,
+          ),
+        ],
+      ),
     );
   }
 

@@ -1,33 +1,22 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:graphql_mobx/ui/styles/palette.dart';
-import 'package:provider/provider.dart';
 
-class NumberInput extends StatefulWidget {
-  final NumberInputController controller;
+class NumberInput extends StatelessWidget {
+  final int value;
+  final int minValue;
+  final int maxValue;
 
-  const NumberInput({Key key, this.controller}) : super(key: key);
+  final VoidCallback onIncrement;
+  final VoidCallback onDecrement;
 
-  @override
-  State<StatefulWidget> createState() => _NumberInputState();
-}
-
-class _NumberInputState extends State<NumberInput> {
-  NumberInputController controller;
-
-  @override
-  void initState() {
-    controller = widget.controller ?? NumberInputController();
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+  const NumberInput({
+    Key key,
+    @required this.value,
+    this.onDecrement,
+    this.onIncrement,
+    @required this.minValue,
+    @required this.maxValue,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,33 +24,22 @@ class _NumberInputState extends State<NumberInput> {
       borderRadius: BorderRadius.all(Radius.circular(8.0)),
       child: Container(
         color: Colors.white,
-        child: ChangeNotifierProvider.value(
-          value: controller.valueNotifier,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Consumer<ValueNotifier<int>>(
-                  builder: (ctx, notifier, child) => Text(notifier.value.toString()),
-                ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(value.toString()),
+            ),
+            Container(
+              child: Row(
+                children: [
+                  buildButton(Icons.add, onIncrement, disabled: value >= maxValue),
+                  buildButton(Icons.remove, onDecrement, disabled: value <= minValue),
+                ],
               ),
-              Container(
-                child: Row(
-                  children: [
-                    buildButton(Icons.add, controller.increment),
-                    Consumer<ValueNotifier<int>>(
-                      builder: (ctx, notifier, child) => buildButton(
-                        Icons.remove,
-                        controller.decrement,
-                        disabled: notifier.value == controller.minValue,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
@@ -88,29 +66,5 @@ class _NumberInputState extends State<NumberInput> {
         child: child,
       ),
     );
-  }
-}
-
-class NumberInputController {
-  final int incrementRate;
-  final int minValue;
-
-  ValueNotifier<int> valueNotifier;
-  int get value => valueNotifier.value;
-
-  NumberInputController({int minValue = 0, this.incrementRate = 1}) : minValue = minValue {
-    valueNotifier = ValueNotifier(minValue);
-  }
-
-  void increment() {
-    valueNotifier.value = max(valueNotifier.value * incrementRate, minValue);
-  }
-
-  void decrement() {
-    valueNotifier.value = max(valueNotifier.value ~/ incrementRate, minValue);
-  }
-
-  dispose() {
-    valueNotifier.dispose();
   }
 }
