@@ -19,7 +19,7 @@ class EventDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<Box<Event>>(
-      valueListenable: Injection.get<Repository<Event>>().watch(),
+      valueListenable: Injection.get<Repository<Event>>().watch(keys: [eventId]),
       builder: (ctx, snapshot, child) {
         var event = snapshot.get(eventId);
 

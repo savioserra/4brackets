@@ -4,8 +4,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:graphql_mobx/ui/pages/new_event/create_event_controller.dart';
 import 'package:graphql_mobx/ui/styles/palette.dart';
 import 'package:graphql_mobx/ui/widgets/brackets_app_bar.dart';
-import 'input.dart';
-import 'label.dart';
+import 'package:graphql_mobx/ui/widgets/input.dart';
+import 'package:graphql_mobx/ui/widgets/label.dart';
 import 'number_input.dart';
 
 class CreateEventPage extends StatefulWidget {
@@ -28,7 +28,9 @@ class _CreateEventPageState extends State<CreateEventPage> {
             child: TweenAnimationBuilder<Color>(
               duration: const Duration(milliseconds: 200),
               tween: ColorTween(
-                  begin: Palette.purple, end: controller.isValid ? Palette.blue : Colors.grey[300]),
+                begin: Palette.purple,
+                end: controller.isValid ? Palette.blue : Colors.grey[300],
+              ),
               builder: (ctx, color, child) => Text(
                 "Next",
                 style: TextStyle(fontSize: 16, color: color),

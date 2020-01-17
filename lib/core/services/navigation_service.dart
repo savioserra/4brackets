@@ -7,4 +7,8 @@ class NavigationService {
   Future<dynamic> push(Function(BuildContext) builder) {
     return navigatorKey.currentState.push(CupertinoPageRoute(builder: builder));
   }
+
+  bool back() {
+    return navigatorKey.currentState.pop();
+  }
 }

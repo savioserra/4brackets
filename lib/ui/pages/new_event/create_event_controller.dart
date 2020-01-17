@@ -1,5 +1,5 @@
 import 'package:graphql_mobx/core/models/event.dart';
-import 'package:graphql_mobx/core/services/navigation.dart';
+import 'package:graphql_mobx/core/services/navigation_service.dart';
 import 'package:graphql_mobx/injection.dart';
 import 'package:graphql_mobx/ui/pages/add_players/add_players_page.dart';
 import 'package:mobx/mobx.dart';
@@ -27,6 +27,16 @@ abstract class _CreatePageControllerBase with Store {
     return _eventNumberOfPlayers;
   }
 
+  @action
+  void incrementNumberOfPlayers() {
+    _eventNumberOfPlayers *= 2;
+  }
+
+  @action
+  void decrementNumberOfPlayers() {
+    _eventNumberOfPlayers ~/= 2;
+  }
+
   void toNextStep() {
     Injection.get<NavigationService>().push(
       (ctx) => AddPlayersPage(
@@ -36,15 +46,5 @@ abstract class _CreatePageControllerBase with Store {
         ),
       ),
     );
-  }
-
-  @action
-  void incrementNumberOfPlayers() {
-    _eventNumberOfPlayers *= 2;
-  }
-
-  @action
-  void decrementNumberOfPlayers() {
-    _eventNumberOfPlayers ~/= 2;
   }
 }
