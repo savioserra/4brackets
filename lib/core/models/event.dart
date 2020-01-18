@@ -25,10 +25,10 @@ class Event extends HiveObject implements Id {
   final int currentPhase;
 
   @HiveField(4)
-  final HiveList<Player> players;
+  HiveList<Player> players;
 
   @HiveField(5)
-  final HiveList<Phase> phases;
+  HiveList<Phase> phases;
 
   int get totalPlayers {
     return players?.length ?? 0;

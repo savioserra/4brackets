@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:graphql_mobx/core/models/event.dart';
-import 'package:graphql_mobx/core/models/player.dart';
-import 'package:graphql_mobx/core/repositories/repository.dart';
-import 'package:graphql_mobx/injection.dart';
-import 'package:graphql_mobx/ui/styles/palette.dart';
-import 'package:graphql_mobx/ui/widgets/brackets_app_bar.dart';
+import 'package:brackets/core/models/event.dart';
+import 'package:brackets/core/models/player.dart';
+import 'package:brackets/core/repositories/repository.dart';
+import 'package:brackets/injection.dart';
+import 'package:brackets/ui/styles/palette.dart';
+import 'package:brackets/ui/widgets/brackets_app_bar.dart';
 import 'package:hive/hive.dart';
 
 class EventDetailsPage extends StatelessWidget {

@@ -1,7 +1,7 @@
-import 'package:graphql_mobx/core/models/event.dart';
-import 'package:graphql_mobx/core/services/navigation_service.dart';
-import 'package:graphql_mobx/injection.dart';
-import 'package:graphql_mobx/ui/pages/add_players/add_players_page.dart';
+import 'package:brackets/core/models/event.dart';
+import 'package:brackets/core/services/navigation_service.dart';
+import 'package:brackets/injection.dart';
+import 'package:brackets/ui/pages/add_players/add_players_page.dart';
 import 'package:mobx/mobx.dart';
 
 part 'create_event_controller.g.dart';
@@ -40,6 +40,7 @@ abstract class _CreatePageControllerBase with Store {
   void toNextStep() {
     Injection.get<NavigationService>().push(
       (ctx) => AddPlayersPage(
+        maxPlayersCount: _eventNumberOfPlayers,
         event: Event(
           description: eventDescription,
           name: eventName,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graphql_mobx/ui/styles/palette.dart';
+import 'package:brackets/ui/styles/palette.dart';
 
 class NumberInput extends StatelessWidget {
   final int value;

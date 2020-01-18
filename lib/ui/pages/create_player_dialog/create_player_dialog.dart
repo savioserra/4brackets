@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:graphql_mobx/ui/pages/create_player_dialog/create_player_dialog_controller.dart';
-import 'package:graphql_mobx/ui/styles/palette.dart';
-import 'package:graphql_mobx/ui/widgets/input.dart';
-import 'package:graphql_mobx/ui/widgets/label.dart';
+import 'package:brackets/ui/pages/create_player_dialog/create_player_dialog_controller.dart';
+import 'package:brackets/ui/styles/palette.dart';
+import 'package:brackets/ui/widgets/input.dart';
+import 'package:brackets/ui/widgets/label.dart';
 
 class CreatePlayerDialog extends StatefulWidget {
   @override
@@ -16,8 +16,7 @@ class _CreatePlayerDialogState extends State<CreatePlayerDialog> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
-      // height: 200,
+      width: MediaQuery.of(context).size.width * 0.9,
       color: Colors.white,
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(

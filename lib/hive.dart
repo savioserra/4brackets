@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:graphql_mobx/core/models/event.dart';
-import 'package:graphql_mobx/core/models/player.dart';
+import 'package:brackets/core/models/event.dart';
+import 'package:brackets/core/models/player.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 

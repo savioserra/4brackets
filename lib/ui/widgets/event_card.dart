@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:graphql_mobx/core/models/event.dart';
-import 'package:graphql_mobx/ui/pages/event_details/event_details.page.dart';
-import 'package:graphql_mobx/ui/styles/icons.dart';
-import 'package:graphql_mobx/ui/styles/palette.dart';
-import 'package:graphql_mobx/ui/widgets/icon_button.dart' as CustomIconButton;
+import 'package:brackets/core/models/event.dart';
+import 'package:brackets/ui/pages/event_details/event_details.page.dart';
+import 'package:brackets/ui/styles/icons.dart';
+import 'package:brackets/ui/styles/palette.dart';
+import 'package:brackets/ui/widgets/icon_button.dart' as CustomIconButton;
 
 class EventCard extends StatelessWidget {
   final Event event;

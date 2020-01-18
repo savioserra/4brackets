@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:graphql_mobx/core/services/navigation_service.dart';
-import 'package:graphql_mobx/hive.dart';
-import 'package:graphql_mobx/injection.dart';
-import 'package:graphql_mobx/ui/pages/event_list/event_list_page.dart';
+import 'package:brackets/core/services/navigation_service.dart';
+import 'package:brackets/hive.dart';
+import 'package:brackets/injection.dart';
+import 'package:brackets/ui/pages/event_list/event_list_page.dart';
 
 Future<void> main() async {
   await hiveBootstrap();

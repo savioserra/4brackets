@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:graphql_mobx/core/models/event.dart';
-import 'package:graphql_mobx/core/models/player.dart';
-import 'package:graphql_mobx/core/repositories/repository.dart';
-import 'package:graphql_mobx/injection.dart';
-import 'package:graphql_mobx/ui/pages/new_event/create_event_page.dart';
-import 'package:graphql_mobx/ui/styles/palette.dart';
-import 'package:graphql_mobx/ui/widgets/icon_button.dart' as CustomButtons;
-import 'package:graphql_mobx/ui/widgets/brackets_app_bar.dart';
-import 'package:graphql_mobx/ui/widgets/event_card.dart';
+import 'package:brackets/core/models/event.dart';
+import 'package:brackets/core/models/player.dart';
+import 'package:brackets/core/repositories/repository.dart';
+import 'package:brackets/injection.dart';
+import 'package:brackets/ui/pages/new_event/create_event_page.dart';
+import 'package:brackets/ui/styles/palette.dart';
+import 'package:brackets/ui/widgets/icon_button.dart' as CustomButtons;
+import 'package:brackets/ui/widgets/brackets_app_bar.dart';
+import 'package:brackets/ui/widgets/event_card.dart';
 import 'package:hive/hive.dart';
 
 class EventListPage extends StatelessWidget {

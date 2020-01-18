@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:graphql_mobx/ui/styles/icons.dart';
+import 'package:brackets/ui/styles/icons.dart';
 
 class BracketsAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;

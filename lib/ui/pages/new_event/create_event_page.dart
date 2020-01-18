@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:graphql_mobx/ui/pages/new_event/create_event_controller.dart';
-import 'package:graphql_mobx/ui/styles/palette.dart';
-import 'package:graphql_mobx/ui/widgets/brackets_app_bar.dart';
-import 'package:graphql_mobx/ui/widgets/input.dart';
-import 'package:graphql_mobx/ui/widgets/label.dart';
+import 'package:brackets/ui/pages/new_event/create_event_controller.dart';
+import 'package:brackets/ui/styles/palette.dart';
+import 'package:brackets/ui/widgets/brackets_app_bar.dart';
+import 'package:brackets/ui/widgets/input.dart';
+import 'package:brackets/ui/widgets/label.dart';
 import 'number_input.dart';
 
 class CreateEventPage extends StatefulWidget {

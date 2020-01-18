@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 import 'core/models/event.dart';
 import 'core/models/player.dart';
 import 'core/repositories/repository.dart';
+import 'core/services/event_service.dart';
+import 'core/services/event_service.dart';
 import 'core/services/navigation_service.dart';
 
 class Injection {
@@ -19,6 +21,10 @@ class Injection {
 
     get.registerLazySingleton<NavigationService>(
       () => NavigationService(),
+    );
+
+    get.registerLazySingleton<EventService>(
+      () => EventService(),
     );
   }
 }
